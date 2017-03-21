@@ -81,8 +81,8 @@ class BasicDroneController(object):
   def SendCommand(self,event):
     self.command.linear.x  = 0.95*self.command.linear.x+0.05*self.forward#low-pass
     self.command.linear.y  = 0.95*self.command.linear.y+0.05*self.sideways#low-pass
-    self.command.linear.z  = self.up
-    self.command.angular.z = self.turn
+    self.command.linear.z  = self.up#smooth already because of inertia
+    self.command.angular.z = 0.95*self.command.angular.z + 0.05*self.turn#low-pass
 
     # The previously set command is then sent out periodically if the drone is flying
     if self.status == DroneStatus.Flying or self.status == DroneStatus.GotoHover or self.status == DroneStatus.Hovering:

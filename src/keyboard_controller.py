@@ -45,7 +45,7 @@ class KeyboardController(DroneVideoDisplay):
 # We add a keyboard handler to the DroneVideoDisplay to react to keypresses
   def keyPressEvent(self, event):
     key = event.key()
-
+    rospy.logwarn('test')
     # If we have constructed the drone controller and the key is not generated from an auto-repeating key
     if controller is not None and not event.isAutoRepeat():
       # Handle the important cases first!
@@ -118,6 +118,7 @@ if __name__=='__main__':
   import sys
   # Firstly we setup a ros node, so that we can communicate with the other packages
   rospy.init_node('ardrone_keyboard_controller')
+  rospy.logwarn('test')
 
   # Now we construct our Qt Application and associated controllers and windows
   app = QtGui.QApplication(sys.argv)
